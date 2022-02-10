@@ -1,0 +1,42 @@
+<section class="container bg-white my-2">
+  <article class="row">
+    <div class="col-3 bg-light text-center">
+      <figure>
+        <img
+          class="img-thumbnail"
+          src="{{trimString payload.emp_photo.0.path}}"
+          alt="{{payload.emp_name}}"
+        />
+      </figure>
+      <h2
+        class="h2 text-uppercase font-weight-bold text-primary p-2 text-center"
+      >{{payload.emp_name}}</h2>
+      <p class="lead">{{payload.emp_email}}</p>
+    </div>
+    <div class="col-9 bg-white my-2 p-2 container-fluid">
+      <main>
+        <h2
+          class="text-uppercase border-bottom font-weight-bold container-fluid ml-2 text-dark"
+        >{{payload.emp_name}}
+        </h2>
+        {{#if user}}
+          <form
+            class="float-right text-danger"
+            method="post"
+            action="/employee/delete-emp/{{payload._id}}?_method=DELETE"
+          >
+            <input type="hidden" name="_method" value="DELETE" />
+            <button class="btn btn-danger">delete</button>
+          </form>
+          <a
+            href="/employee/edit-emp/{{payload._id}}"
+            class="btn btn-info btn-sm"
+          >Edit Profile</a>
+
+        {{/if}}
+      </main>
+      <p class="lead p-1">Employee id: {{payload.emp_id}}</p>
+    </div>
+
+  </article>
+</section>
